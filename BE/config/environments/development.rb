@@ -74,3 +74,11 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 end
+
+Rswag::Api.configure do |c|
+  c.openapi_root = Rails.root.to_s + '/swagger'
+end
+
+Rswag::Ui.configure do |c|
+  c.openapi_endpoint '/api-docs/v1/swagger.yaml', 'API V1 Docs'
+end
