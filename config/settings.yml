@@ -1,0 +1,8 @@
+pagy:
+  page_default: 1
+  items_default: 10
+  items_maxsize_default: 70
+  instances:
+    - vars
+    - overflow
+    - params
