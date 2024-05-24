@@ -1,0 +1,65 @@
+ja:
+  errors:
+    something_went_wrong:
+       message: エラーが発生しました。
+    format: "%{attribute}%{message}"
+    messages:
+      content_type_invalid: PNG,JPG形式の画像をアップロードしてください。
+      record_invalid: '%{errors}'
+      accepted: を受諾してください。
+      blank: を入力してください。
+      confirmation: と%{attribute}の入力が一致しません。
+      empty: のが無効値です。
+      equal_to: は%{count}以下の値にしてください。
+      even: は偶数にしてください。
+      exclusion: が無効値です。
+      greater_than: は%{count}より大きい値にしてください。
+      greater_than_or_equal_to: は%{count}以上の値にしてください。
+      inclusion: は一覧にありません。
+      invalid: は無効値です。
+      less_than: は%{count}より小さい値にしてください。
+      less_than_or_equal_to: は%{count}以下の値にしてください。
+      model_invalid: '%{errors}'
+      not_a_number: は数字で入力してください。
+      not_an_integer: は整数で入力してください。
+      odd: は奇数にしてください。
+      other_than: は%{count}以外の値にしてください。
+      present: は入力しないでください。
+      required: を入力してください。
+      taken: はすでに存在します。
+      too_long: は%{count}文字以内で入力してください。
+      too_short: は%{count}文字以上で入力してください。
+      wrong_length: は%{count}文字で入力してください。
+      to_many_record: 最大%{limit}記録それは許可された。手に入れた%{size}記録代わりは。
+    code:
+      content_type_invalid: "M-00001"
+      record_invalid: "M-00002"
+      accepted: "M-00003"
+      blank: "M-00004"
+      confirmation: "M-00005"
+      empty: "M-00006"
+      equal_to: "M-00007"
+      even: "M-00008"
+      exclusion: "M-00009"
+      greater_than: "M-00010"
+      greater_than_or_equal_to: "M-00011"
+      inclusion: "M-00012"
+      invalid: "M-00013"
+      less_than: "M-00014"
+      less_than_or_equal_to: "M-00015"
+      model_invalid: "M-00016"
+      not_a_number: "M-00017"
+      not_an_integer: "M-00018"
+      odd: "M-00019"
+      other_than: "M-00020"
+      present: "M-00021"
+      required: "M-00022"
+      taken: "M-00023"
+      too_long: "M-00024"
+      too_short: "M-00025"
+      wrong_length: "M-00026"
+      to_many_record: "M-00027"
+      record_not_found: "M-00028"
+    active_record:
+      not_found:
+        message: 該当する情報は見つかりませんでした。
