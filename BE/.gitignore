@@ -35,3 +35,5 @@
 /config/master.key
 
 /config/application.yml
+/app/models/user.rb
+/app/db/migrate/20240523162051_create_active_storage_tables.active_storage.rb
