@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_26_125835) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_27_052921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_125835) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "progoses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date_test", null: false
+    t.integer "range", null: false
+    t.text "range_evaluation"
+    t.integer "accuracy", null: false
+    t.text "accuracy_evaluation"
+    t.integer "fluency", null: false
+    t.text "fluency_evaluation"
+    t.integer "interaction", null: false
+    t.text "interaction_evaluation"
+    t.integer "coherence", null: false
+    t.text "coherence_evaluation"
+    t.integer "phonology", null: false
+    t.text "phonology_evaluation"
+    t.integer "overall", null: false
+    t.text "overall_evaluation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_progoses_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name_roma", limit: 30
     t.string "name_kata", limit: 50
@@ -58,4 +80,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_125835) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "progoses", "users"
 end

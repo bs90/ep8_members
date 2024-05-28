@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   has_one_attached :avatar
+  has_many :progoses, dependent: :destroy
 
   enum :original_role, {engineer: 0, brse: 1}
   enum :training_role, {be: 0, fe: 1, mobile: 2}
