@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
+import GoogleProvider from "next-auth/providers/google";
 
 import type { NextAuthConfig, Session } from "next-auth";
 
@@ -8,20 +8,9 @@ export const config = {
     logo: "https://next-auth.js.org/img/logo/logo-sm.png",
   },
   providers: [
-    Google({
-      authorization: {
-        params: {
-          access_type: "offline",
-          prompt: "consent",
-          scope: [
-            "openid",
-            "https://www.googleapis.com/auth/userinfo.email",
-            "https://www.googleapis.com/auth/userinfo.profile",
-            // and more scope urls
-          ].join(" "),
-          response: "code",
-        },
-      },
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   basePath: "/api/auth",
@@ -47,8 +36,8 @@ export const config = {
           const response = await fetch("https://oauth2.googleapis.com/token", {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams({
-              client_id: process.env.AUTH_GOOGLE_ID as string, // Type assertion
-              client_secret: process.env.AUTH_GOOGLE_SECRET as string, // Type assertion
+              client_id: process.env.GOOGLE_CLIENT_ID as string, // Type assertion
+              client_secret: process.env.GOOGLE_CLIENT_SECRET as string, // Type assertion
               grant_type: "refresh_token",
               refresh_token: token.refresh_token as string, // Type assertion
             }),
