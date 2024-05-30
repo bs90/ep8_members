@@ -4,16 +4,15 @@ import GoogleProvider from "next-auth/providers/google";
 import type { NextAuthConfig, Session } from "next-auth";
 
 export const config = {
-  theme: {
-    logo: "https://next-auth.js.org/img/logo/logo-sm.png",
-  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  basePath: "/api/auth",
+  pages: {
+    signIn: "/login",
+  },
   callbacks: {
     authorized({ request, auth }) {
       return !!auth;

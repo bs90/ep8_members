@@ -2,38 +2,47 @@
 import { useSession } from "next-auth/react";
 import Skeleton from "@mui/material/Skeleton";
 import { useRouter } from "next/navigation";
-import { signOut } from "@/auth";
+import { signOut } from "next-auth/react";
+import { Button } from "@mui/material";
+import Image from "next/image";
 
 export default function Home() {
   const { data: session, status } = useSession();
-  const { push } = useRouter();
+  const router = useRouter();
 
   return (
     <div className="flex items-center flex-col justify-center h-screen">
-      <h1 className="text-3xl m-10 font-bold">Next Auth</h1>
+      <h1 className="text-3xl font-bold">Next Auth</h1>
       <div className="flex items-center flex-col m-5">
-        <div className="m-2">ログイン中のユーザー</div>
-        {status === "loading" ? (
+        {status === "loading" && (
           <Skeleton variant="text" animation="wave" width={175} height={25} />
-        ) : (
-          <p className="font-bold">{session?.user?.email}</p>
         )}
       </div>
       {!session && (
-        <button
-          onClick={() => push("/login")}
-          className="bg-blue-600 py-2 px-3 text-xs text-white rounded-lg"
+        <Button
+          onClick={() => router.push("/login")}
+          variant="contained"
+          color="primary"
         >
-          ログインする
-        </button>
+          ログイン
+        </Button>
       )}
       {session && (
-        <button
-          onClick={() => signOut()}
-          className="bg-red-500 py-2 px-3 text-xs text-white rounded-lg"
-        >
-          サインアウトする
-        </button>
+        <>
+          <Image
+            src={session?.user?.image || ""}
+            alt="user_avatar"
+            width={75}
+            height={75}
+          />
+          <div className="m-4">
+            <p className="text-center">Name: {session?.user?.name}</p>
+            <p className="text-center">Email: {session?.user?.email}</p>
+          </div>
+          <Button variant="contained" color="error" onClick={() => signOut()}>
+            ログアウト
+          </Button>
+        </>
       )}
     </div>
   );
