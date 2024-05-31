@@ -2,8 +2,8 @@
 import React from "react";
 import { Button } from "@mui/material";
 import Image from "next/image";
-import { useSession, signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 const styles = {
   container: "flex flex-col items-center justify-center h-screen space-y-12",
@@ -11,13 +11,12 @@ const styles = {
 };
 
 const LoginPage: React.FC = () => {
-  const { data: session, status } = useSession();
-
-  if (session) redirect("/");
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   return (
     <div className={styles.container}>
-      <Image src="/logo.png" width={300} height={100} alt="logo" priority />
+      <Image src="/logo.svg" width={300} height={100} alt="logo" priority />
       <Button
         variant="contained"
         color="secondary"
@@ -32,12 +31,12 @@ const LoginPage: React.FC = () => {
           />
         }
         sx={{
+          padding: "10px",
           ":hover": {
             bgcolor: "#fff",
           },
-          padding: "10px",
         }}
-        onClick={() => signIn("google")}
+        onClick={() => signIn("google", { callbackUrl })}
       >
         Google アカウントでログイン
       </Button>

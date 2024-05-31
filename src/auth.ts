@@ -14,9 +14,9 @@ export const config = {
     signIn: "/login",
   },
   callbacks: {
-    authorized({ request, auth }) {
-      return !!auth;
-    },
+    // authorized({ request, auth }) {
+    //   return !!auth;
+    // },
     async jwt({ token, user, account }) {
       // Initial sign in
       if (account && user) {
