@@ -20,12 +20,14 @@ export const config = {
     async jwt({ token, user, account }) {
       // Initial sign in
       if (account && user) {
+        console.log("Account info: ", account);
         return {
           ...token,
           access_token: account.access_token,
           issued_at: Date.now(),
           expires_at: Date.now() + Number(account.expires_in) * 1000, // 3600 seconds
           refresh_token: account.refresh_token,
+          id_token: account.id_token,
         };
       } else if (Date.now() < Number(token.expires_at)) {
         return token;
@@ -63,8 +65,9 @@ export const config = {
       }
     },
     async session({ session, token }) {
-      console.log("Incoming session info: ", session);
-      console.log("Incoming token info: ", token);
+      // console.log("Incoming session info: ", session);
+      // console.log("Incoming token info: ", token);
+      // console.log(token);
       // This will be accessible in the client side using useSession hook
       // So becareful what you return here. Don't return sensitive data.
       // The auth() function should return jwt response but instead it returns
