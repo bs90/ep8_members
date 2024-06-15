@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :token do
     access_token {Faker::Internet.uuid}
-    access_token_expires_at {Time.now + 24.hours}
+    access_token_expires_at {Faker::Time.forward(days: Settings.token.access_token_expires_at, period: :day)}
     association :user
   end
 end

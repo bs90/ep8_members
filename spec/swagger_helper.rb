@@ -26,7 +26,7 @@ shared_components = {
         url: {type: :string, example: "https://odori-park.jp/", description: "URL of the Custom data's website"}
       }
     },
-    detail_session: {
+    detail_user: {
       type: :object,
       properties: {
         user: {

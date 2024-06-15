@@ -21,14 +21,20 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - mailcatcher
+      - redis
     tty: true
     stdin_open: true
+  mailcatcher:
+    restart: on-failure:10
+    image: dockage/mailcatcher:0.7.1
+    ports:
+      - "1080:1080"
+      - "1025:1025"
   redis:
-    image: redis:6.2.6
-    command: redis-server
-    volumes:
-      - redis_data:/data
-
+    image: redis:7.0
+    ports:
+      - "6379:6379"
 volumes:
   postgres_db:
   bundle_data:

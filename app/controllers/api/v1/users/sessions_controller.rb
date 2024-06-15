@@ -7,7 +7,7 @@ class Api::V1::Users::SessionsController < Api::BaseController
     google_service = LoginGoogleService.new(params[:id_token])
     user_google_info = google_service.get_user_google_info
 
-    resource = User.create_user_for_google(user_google_info)
+    resource = User.find_by(email: user_google_info["email"], provider: "google_oauth2")
     @access_token = resource.tokens.create!
     response_with resource
   end

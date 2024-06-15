@@ -4,6 +4,7 @@ source "https://rubygems.org"
 ruby "3.2.3"
 
 gem "active_model_serializers"
+gem "activerecord-import"
 gem "bootsnap", require: false
 gem "config"
 gem "figaro"
@@ -33,6 +34,7 @@ group :development, :test do
   gem "rswag-api"
   gem "rswag-ui"
   gem "rubocop", require: false
+  gem "shoulda-matchers", "~> 4.0"
 end
 
 group :development do

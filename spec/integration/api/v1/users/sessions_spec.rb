@@ -23,7 +23,7 @@ describe "API: Sessions" do
                properties: {
                  example: {
                    type: :object,
-                   "$ref" => "#/components/schemas/detail_session"
+                   "$ref" => "#/components/schemas/detail_user"
                  }
                }
         xit
