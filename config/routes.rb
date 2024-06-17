@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
+  if Rails.env.development? || Rails.env.staging?
+    mount Rswag::Ui::Engine => '/api-docs'
+    mount Rswag::Api::Engine => '/api-docs'
+
+    root to: redirect("/api-docs")
+  end
 
   get "up" => "rails/health#show", as: :rails_health_check
   get "test", to: "test#index"
@@ -10,7 +14,7 @@ Rails.application.routes.draw do
       namespace :users do
         resources :progoses, only: %i(create index show update destroy)
 
-        scope "/sessions" do     
+        scope "/sessions" do
           post :sign_in, to: "sessions#create"
           delete :sign_out, to: "sessions#destroy"
         end

@@ -9,10 +9,10 @@ attempts=0
 echo "------------------------------------------------------------------------------------"
 
 while true; do
-  http_status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/test)
+  http_status=$(curl -s -o /dev/null -w "%{http_code}" -k https://0.0.0.0/test)
 
   if [ "$http_status" = "200" ]; then
-    showSuccess "Rails application is up and running on port 8080."
+    showSuccess "Rails application is up and running on port 3000."
     break
   else
     attempts=$((attempts + 1))
