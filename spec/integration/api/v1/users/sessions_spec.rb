@@ -21,10 +21,12 @@ describe "API: Sessions" do
       response "200", "OK" do
         schema type: :object,
                properties: {
-                 example: {
-                   type: :object,
-                   "$ref" => "#/components/schemas/detail_session"
-                 }
+                 access_token: {
+                   type: :string,
+                   example: "eyJhbGciOiJIUzI1NiJ9.ywianRpIjoiMWUtNWYwN2U2YmY0MGRmIn0.vfxKoAA20L6AjBkGwSfMtFqQ",
+                   description: "Access token"
+                 },
+                 user: {"$ref": "#/components/schemas/detail_user"}
                }
         xit
       end

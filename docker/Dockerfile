@@ -4,8 +4,6 @@ CMD ["irb"]
 ARG RAILS_ENV
 # RAILS_ENV = staging for build base image dev/staging, production for build base image production
 ENV RAILS_ENV=${RAILS_ENV:-development}
-ARG SECRET_KEY_BASE
-ENV SECRET_KEY_BASE=${SECRET_KEY_BASE:-secret_key_base}
 
 # Install necessary packages
 RUN apk update && \

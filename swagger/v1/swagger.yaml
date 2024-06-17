@@ -4,173 +4,6 @@ info:
   title: API V1
   version: v1
 paths:
-  "/api/v1/user/{example_id}/example":
-    post:
-      summary: 'API: Create example data'
-      tags:
-      - Example
-      parameters:
-      - name: Accept-Language
-        in: header
-        example: ja
-        schema:
-          type: string
-      - name: example_id
-        required: true
-        in: path
-        example: '1'
-        description: Prefecture ID
-      security:
-      - bearer_auth: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  example:
-                    type: object
-                    "$ref": "#/components/schemas/detail_example"
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/bad_request"
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/unauthorized"
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/not_found"
-        '422':
-          description: Unprocessable Entity
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/unprocessable_entity"
-        '500':
-          description: Server Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/server_error"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                category:
-                  type: string
-                  example: 観光スポット
-                  description: Category of the custom data
-                name:
-                  type: string
-                  example: 大通公園
-                  description: Name of the custom data
-                description:
-                  type: string
-                  example: "「雪まつり」の会場としても全国に知られる有名スポット"
-                  description: Description of the custom data
-                url:
-                  type: string
-                  example: https://odori-park.jp/
-                  description: URL of the custom data's website
-        required: true
-  "/api/v1/user/example/{id}":
-    get:
-      summary: 'API: Get detail example'
-      tags:
-      - Example
-      parameters:
-      - name: Accept-Language
-        in: header
-        example: ja
-        schema:
-          type: string
-      - name: id
-        required: true
-        in: path
-        example: '1'
-        description: Example ID
-      security:
-      - bearer_auth: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  prefecture:
-                    type: object
-                    "$ref": "#/components/schemas/detail_example"
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/bad_request"
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/not_found"
-  "/api/v1/user/example":
-    get:
-      summary: 'API: Get list all example'
-      tags:
-      - Example
-      parameters:
-      - name: Accept-Language
-        in: header
-        example: ja
-        schema:
-          type: string
-      - name: page
-        in: query
-        example: 1
-        description: Page number of list items
-        schema:
-          type: integer
-      security:
-      - bearer_auth: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  prefectures:
-                    type: array
-                    items:
-                      type: object
-                      "$ref": "#/components/schemas/detail_example"
-                  meta:
-                    type: object
-                    properties:
-                      pagy_info:
-                        type: object
-                        "$ref": "#/components/schemas/pagy_info"
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/bad_request"
   "/api/v1/users/progoses":
     post:
       summary: Create a new progose
@@ -180,14 +13,14 @@ paths:
       - bearer_auth: []
       parameters: []
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  example:
+                  progose:
                     type: object
                     "$ref": "#/components/schemas/detail_progose"
         '400':
@@ -372,8 +205,10 @@ paths:
       - name: id
         required: true
         in: path
-        example: '1'
+        example: 1
         description: Progose ID
+        schema:
+          type: integer
       responses:
         '200':
           description: OK
@@ -405,8 +240,10 @@ paths:
       - name: id
         required: true
         in: path
-        example: '1'
+        example: 1
         description: Progose ID
+        schema:
+          type: integer
       security:
       - bearer_auth: []
       responses:
@@ -549,8 +386,10 @@ paths:
       - name: id
         required: true
         in: path
-        example: '1'
+        example: 1
         description: Progose ID
+        schema:
+          type: integer
       security:
       - bearer_auth: []
       responses:
@@ -589,9 +428,12 @@ paths:
               schema:
                 type: object
                 properties:
-                  example:
-                    type: object
-                    "$ref": "#/components/schemas/detail_session"
+                  access_token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiJ9.ywianRpIjoiMWUtNWYwN2U2YmY0MGRmIn0.vfxKoAA20L6AjBkGwSfMtFqQ
+                    description: Access token
+                  user:
+                    "$ref": "#/components/schemas/detail_user"
         '400':
           description: Bad Request
           content:
@@ -630,8 +472,8 @@ paths:
               properties:
                 id_token:
                   type: string
-                  example: eyJhbGciOiJSUzI1NiIsImtpZCI6IjY3NGRiYmE4ZmFlZTY5YWNhZTFiYzFiZTE5MDQ1MzY3OGY0NzI4MDMiLCJ0eXAiOiJKV1QifQ
-                  description: User's id_token
+                  example: eyJhbGciOiJSUzI1NiIsImtpZCI
+                  description: User's id token
         required: true
   "/test":
     get:
@@ -681,7 +523,7 @@ components:
           type: string
           example: https://odori-park.jp/
           description: URL of the Custom data's website
-    detail_session:
+    detail_user:
       type: object
       properties:
         user:
@@ -699,10 +541,6 @@ components:
               type: string
               example: Mai Trong Dung
               description: User's name_roma
-        access_token:
-          type: string
-          example: 21478b6fdbb63717f2d9c21da9f396945263f282a68c227d4ea00b8bb21966bc
-          description: User's access token
     detail_progose:
       type: object
       properties:

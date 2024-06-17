@@ -65,10 +65,10 @@ describe "Progoses API" do
                      overall overall_evaluation)
       }
 
-      response "200", "OK" do
+      response "201", "Created" do
         schema type: :object,
                properties: {
-                 example: {
+                 progose: {
                    type: :object,
                    "$ref" => "#/components/schemas/detail_progose"
                  }
@@ -109,7 +109,7 @@ describe "Progoses API" do
       consumes "application/json"
       produces "application/json"
       security [bearer_auth: []]
-      parameter name: :id, required: true, in: :path, example: "1", description: "Progose ID"
+      parameter name: :id, required: true, in: :path, type: :integer, example: 1, description: "Progose ID"
 
       response "200", "OK" do
         schema type: :object,
@@ -184,7 +184,7 @@ describe "Progoses API" do
       tags "Progoses"
       consumes "application/json"
       produces "application/json"
-      parameter name: :id, required: true, in: :path, example: "1", description: "Progose ID"
+      parameter name: :id, required: true, in: :path, type: :integer, example: 1, description: "Progose ID"
       security [bearer_auth: []]
       parameter name: :progose, required: true, in: :body, schema: {
         type: :object,
@@ -285,7 +285,7 @@ describe "Progoses API" do
       tags "Progoses"
       consumes "application/json"
       produces "application/json"
-      parameter name: :id, required: true, in: :path, example: "1", description: "Progose ID"
+      parameter name: :id, required: true, in: :path, type: :integer, example: 1, description: "Progose ID"
       security [bearer_auth: []]
 
       response "204", "No Content" do

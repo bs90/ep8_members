@@ -26,7 +26,7 @@ shared_components = {
         url: {type: :string, example: "https://odori-park.jp/", description: "URL of the Custom data's website"}
       }
     },
-    detail_session: {
+    detail_user: {
       type: :object,
       properties: {
         user: {
@@ -36,8 +36,7 @@ shared_components = {
             email: {type: :string, example: "mai.trong.dung@sun-asterisk.com", description: "User's email"},
             name_roma: {type: :string, example: "Mai Trong Dung", description: "User's name_roma"}
           }
-        },
-        access_token: {type: :string, example: "21478b6fdbb63717f2d9c21da9f396945263f282a68c227d4ea00b8bb21966bc", description: "User's access token"}
+        }
       }
     },
     detail_progose: {

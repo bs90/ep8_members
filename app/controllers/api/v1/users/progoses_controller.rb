@@ -16,7 +16,7 @@ class Api::V1::Users::ProgosesController < Api::BaseController
   def create
     progose = current_user.progoses.create! progose_params
 
-    render_jsonapi progose, type: :detail_info
+    render_jsonapi progose, type: :detail_info, status: :created
   end
 
   def update
